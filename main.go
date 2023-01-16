@@ -13,6 +13,9 @@ var app = cli.NewApp()
 
 var tvShows = []string{"I'm sure you gonna enjoy watching: "}
 
+var listTvShows = []string{"Suits", "Hometown Cha Cha Cha", "The Boys", "The King's Affection", "Squid Game"}
+var listAnimes = []string{"Attack on Titan", "Demon Slayer", "Jujutsu Kaisen", "Mushoku Tensei", "Kaguya Sama Love is War"}
+
 func info() {
 	app.Name = "TV shows / Anime CLI"
 	app.Usage = "CLI to manage your TV shows and Anime"
@@ -36,6 +39,21 @@ func flags() {
 			Usage: "List all the anime",
 		},
 	}
+
+	app.Action = func(c *cli.Context) error {
+		if c.Bool("tvshows") {
+			for _, show := range listTvShows {
+				fmt.Println(show)
+			}
+		}
+		if c.Bool("anime") {
+			for _, anime := range listAnimes {
+				fmt.Println(anime)
+			}
+		}
+		return nil
+	}
+
 }
 
 func switchCommand() {
